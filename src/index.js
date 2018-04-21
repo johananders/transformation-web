@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import API_ROOT from './environment';
-import { Alert, Button, FormGroup, FormControl, ControlLabel, ListGroup, ListGroupItem, Grid, Row, Navbar, HelpBlock, Table } from 'react-bootstrap';
+import { Alert, Button, FormGroup, FormControl, ControlLabel, Grid, Row, Navbar, Table } from 'react-bootstrap';
 
 
 class MyForm extends React.Component {
@@ -28,14 +28,14 @@ class MyForm extends React.Component {
 
     getValidationState() {
         const length = this.state.value.length;
-        if (length == 0 || length > 1000) {
+        if (!length || length > 1000) {
             return 'warning';
         } else {
             return null;
         }
     }
 
-    handleDismiss() {   
+    handleDismiss() {
         this.setState({ error: '' })
     }
 
@@ -44,7 +44,7 @@ class MyForm extends React.Component {
         if (length > 1000) {
             this.setState({ error: 'Max 1000 characters' });
             return;
-        } else if (length == 0) {
+        } else if (!length) {
             this.setState({ error: 'Min 1 character' });
             return;
         }
@@ -56,8 +56,7 @@ class MyForm extends React.Component {
             }),
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Content-Type': 'application/json'
             }
         }).then((response) => {
             return response.json()
@@ -85,7 +84,6 @@ class MyForm extends React.Component {
         }
 
         return (
-
             <Grid>
                 <Row>
                     <Navbar>
