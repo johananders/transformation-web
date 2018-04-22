@@ -18,7 +18,8 @@ npm
 
 #### Deploy
 
-* `npm start`
+* install dependencies `npm install`
+* `npm start` (assumes api running at http://localhost:8080)
 
 ### Production
 
